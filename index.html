@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            margin: auto;
+            width: 200px;
+            height: 350px;
+            display: grid;
+            grid-template-columns: 25% 25% 25% 25%;
+            grid-template-rows: 25% 25% 25% 25% 25% 25%;
+        }
+        #display-screen {
+            grid-area: 1/1/2/5;
+        }
+        #equal-button {
+            grid-area:5/1/5/4;
+        }
+        #clear-button {
+            grid-area:6/1/6/5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <input id="display-screen" type="text" disabled>
+        <button class="calc-button">1</button>
+        <button class="calc-button">2</button>
+        <button class="calc-button">3</button>
+        <button class="calc-button">+</button>
+        <button class="calc-button">4</button>
+        <button class="calc-button">5</button>
+        <button class="calc-button">6</button>
+        <button class="calc-button">-</button>
+        <button class="calc-button">7</button>
+        <button class="calc-button">8</button>
+        <button class="calc-button">9</button>
+        <button class="calc-button">*</button>
+        <button class="calc-button" id="equal-button">=</button>
+        <button class="calc-button">/</button>
+        <button class="calc-button" id="clear-button">CLEAR</button>
+    </div>
+    <script src="main.js">
+
+    </script>
+</body>
+</html>
