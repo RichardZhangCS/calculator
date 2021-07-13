@@ -12,11 +12,11 @@ const calculatorButtons = container.querySelectorAll(".calc-button");
 let previousValue;
 let operation;
 
-function buttonMasterFunction() {
+function buttonMasterFunction(e, symbol) {
     const displayScreen = container.querySelector("#display-screen");
     const pVDisplayScreen = container.querySelector("#pV-display-screen");
     if (pVDisplayScreen.value == "CANNOT DIVIDE BY ZERO") pVDisplayScreen.value = '';
-    const symbol = this.textContent;
+    if (symbol === undefined) symbol = this.textContent;
     if (symbol >= '0' && symbol <= '9') {
         displayScreen.value += symbol;
         return;
@@ -36,7 +36,6 @@ function buttonMasterFunction() {
         return;
     }
 
-    console.log(symbol);
     if (symbol == "\u232b") {
         const newValue = displayScreen.value.slice(0,-1);
         displayScreen.value = newValue;
@@ -93,6 +92,9 @@ function buttonMasterFunction() {
         case '/':
             operation = divide;
             break;
+        default:
+            // the symbol/key is not binded to any function
+            return;
     }
     if (!displayScreen.value && pVDisplayScreen.value!="CANNOT DIVIDE BY ZERO" && pVDisplayScreen.value) {
         pVDisplayScreen.value = pVDisplayScreen.value.slice(0,-1) + symbol;
@@ -105,6 +107,14 @@ function buttonMasterFunction() {
     }
 }
 
+function keyMasterFunction(e) {
+    let key = e.key.toLowerCase();
+    if (key == "backspace") key ="\u232b";
+    if (key == "enter") key="=";
+    buttonMasterFunction(e,key);
+}
+
 calculatorButtons.forEach((button) => {
     button.addEventListener('click', buttonMasterFunction);
 });
+window.addEventListener('keydown', keyMasterFunction);
